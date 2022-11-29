@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 let loginSchema = new Schema({
     name: {type: String, required: true, max: 100},
-    contact_no: {type: Number, required: true},
+    contact_no: {type: String, required: true},
     email: {type: String, required: true},
     image: {type: String},
     password: {type: String, required: true, max: 100},

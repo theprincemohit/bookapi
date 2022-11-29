@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const users = require('./routes/users.route');
 const login = require('./routes/login.route');
+const books = require('./routes/books.route');
+const misc = require('./routes/misc.route');
 const loginController = require('./controllers/login.controller');
 const app = express();
 const mongoose = require('mongoose');
@@ -14,7 +16,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-
+app.use('/misc', loginController.verifyToken, misc);
+app.use('/books', loginController.verifyToken, books);
 app.use('/users', loginController.verifyToken, users);
 app.use('/login', login);
 let port = 3000;
