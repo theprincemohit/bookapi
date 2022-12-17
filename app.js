@@ -18,6 +18,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+app.use('/test', (req,res) => res.send("working fine"));
 app.use('/misc', misc);
 app.use('/report', report);
 app.use('/payment', payment);
