@@ -25,7 +25,7 @@ app.use('/payment', payment);
 app.use('/books', loginController.verifyToken, books);
 app.use('/users', loginController.verifyToken, users);
 app.use('/login', login);
-let port = 3000;
+let port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log('Server is up and running on port numner ' + port);
 });
