@@ -1,22 +1,25 @@
-const Users = require('../models/users.model');
+const Payment = require('../models/payments.model');
 
 //Simple version, without validation or sanitation
 exports.test = function (req, res) {
     res.send({aa : 'Greetings from the Test controller!'});
 };
 
-exports.user_create = async function (req, res) {
+exports.add = async function (req, res) {
      
     const reqData = JSON.parse(JSON.stringify(req.body))
-    let user = new Users(
+    let payment = new Payment(
         {
-            name: reqData.name,
-            contact_no: reqData.contact_no
+            deposit_type: reqData.deposit_type,
+            amount: reqData.amount,
+            payment_mode: reqData.payment_mode,
+            book_id: reqData.book_id,
+            payment_date: reqData.payment_date
         }
     );
 
-   const userData = await  user.save();
-   res.send(userData)
+   const paymentData = await  payment.save();
+   res.send(paymentData)
 };
 
 exports.all = async function (req, res) {

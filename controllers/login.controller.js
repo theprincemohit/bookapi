@@ -8,16 +8,16 @@ exports.test = function (req, res) {
 };
 
 exports.login = async function (req, res) {
-    console.log("token",  req.body)
-    Login.findOne({ contact_no: Number(req.body.contact_no)}, function (err, loginDetail) {
+    const reqData = JSON.parse(JSON.stringify(req.body));
+    Login.findOne({ contact_no: Number(reqData.contact_no)}, function (err, loginDetail) {
         
         if (err) return res.status(401).send('Login not found');
         
         if(!loginDetail) return res.status(500).send({message : 'invalid credentials'});
 
-        if(loginDetail.password != req.body.password) return res.status(401).send({message : 'mobile no or password is wrong'});
+        if(loginDetail.password != reqData.password) return res.status(401).send({message : 'mobile no or password is wrong'});
         const token = jwt.sign({contact_no : loginDetail.contact_no, email : loginDetail.email}, setting.TOKEN_SECRET, { expiresIn: '1800s' });
-        console.log("token", token, req.body, loginDetail)
+        console.log("token", token, reqData, loginDetail)
         loginDetail['token'] = token;
         const response = {
             token : token,

@@ -10,6 +10,7 @@ const user_controller = require('../controllers/users.controller');
 // a simple test url to check that all of our files are communicating correctly.
 router.get('/test', user_controller.test);
 router.post('/create', user_controller.user_create);
+router.get('/all', user_controller.all);
 router.get('/:id', user_controller.product_details);
 router.put('/:id/update', user_controller.product_update);
 router.delete('/:id/delete', user_controller.product_delete);

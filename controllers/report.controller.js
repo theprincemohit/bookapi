@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Users = require('../models/users.model');
 const Books = require('../models/books.model');
 
-exports.newbook = async function (req, res) {
+exports.totalDebitAmount_mmmmm = async function (req, res) {
     const reqData = JSON.parse(JSON.stringify(req.body));
     console.log("pp", reqData)
     let userData = { _id: reqData.userId }
@@ -32,19 +32,21 @@ exports.newbook = async function (req, res) {
     res.send(bookData);
 };
 
-exports.getbooks = async function (req, res) {
-    console.log("params in node ", req.body)
-   // res.send({data : 'abc'})
+exports.totalDebitAmount = async function (req, res) {
+
     try {
-        const abcx = await Users.aggregate([
-            {
-                $lookup: {
-                    from: 'books',
-                    localField: '_id',
-                    foreignField: 'user_id',
-                    as: 'Books'
+        const abcx = await Books.aggregate([
+            
+            [
+                {
+                  $group: {
+                    _id: "_id",
+                    "total" : {
+                        $sum : "$amount"
+                    }
+                  }
                 }
-            }
+              ],
         ]);
        // console.log("aa", abcx);
         res.send(abcx)
@@ -55,7 +57,7 @@ exports.getbooks = async function (req, res) {
 
 };
 
-exports.getbookByUserId = async function (req, res) {
+exports.monthlypaylist = async function (req, res) {
     const userId =  req.params.userId
     console.log("iserid0", userId)
     try {

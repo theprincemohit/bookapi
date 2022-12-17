@@ -9,5 +9,8 @@ const misc_controller = require('../controllers/misc.controller');
  
 
 router.post('/create', misc_controller.newbook);
-
+router.get('/getbooks', misc_controller.getbooks); 
+router.get('/getbookByUserId/:userId', misc_controller.getbookByUserId); 
+router.get('/getbookByBookId/:bookId', misc_controller.getbookByBookId); 
+router.get('/paymentsByBookId', misc_controller.paymentsByBookId);
 module.exports = router;

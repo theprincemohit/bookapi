@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 let booksSchema = new Schema({
    
     amount: {type: Number, required: true},
-    user_id : {type: mongoose.Schema.Types.ObjectId, ref: 'users' , required: true},
+    user_id : {type: mongoose.Schema.Types.ObjectId, ref: 'Users'},
     percentage : {type: Number, required: true},
     start_date : {type: String, required: true},
     end_date : {type: String},
